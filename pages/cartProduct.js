@@ -6,7 +6,7 @@ export default function CartProducts({ product }) {
     state: { cart },
     dispatch,
   } = CartState();
- 
+
   return (
     <>
       {" "}
@@ -15,6 +15,8 @@ export default function CartProducts({ product }) {
         {" "}
         {product.name} {product.price}
       </div>{" "}
+      items {product.qty}
+      <br />
       <button
         onClick={() => {
           dispatch({
@@ -25,6 +27,29 @@ export default function CartProducts({ product }) {
       >
         {" "}
         Remove
+      </button>
+      <button
+        onClick={() => {
+          dispatch({
+            type: "Increment_qty",
+            payload: product,
+          });
+        }}
+      >
+        {" "}
+        Add More
+      </button>
+      {/* Decrement_qty */}
+      <button
+        onClick={() => {
+          dispatch({
+            type: "Decrement_qty",
+            payload: product,
+          });
+        }}
+      >
+        {" "}
+        Remove items
       </button>
       <br />
     </>
