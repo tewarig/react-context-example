@@ -1,25 +1,27 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import SingleProducts from "./comp/products";
 import { CartState } from "./context/context";
 
 export default function Home() {
   const {
-    state: { products },
+    state: { products, cart },
   } = CartState();
 
   return (
     <>
-      <h1> Products in shop</h1>
+      <h1>
+        {" "}
+        Products in shop{" "}
+        <Link href="/cart">
+          <a>cart:{cart.length} </a>
+        </Link>{" "}
+      </h1>
+      <div></div>
       {products.map((product) => (
-        <div id={product.id}>
-          <img src={product.image}></img>
-          <div> {product.name}</div>
-          <div>{product.inStock} </div>
-          <div> {product.price}</div>
-          <div> {product.fastDelovery}</div>
-          <div> {product.ratings}</div>
-        </div>
+        <SingleProducts product={product} />
       ))}
     </>
   );
